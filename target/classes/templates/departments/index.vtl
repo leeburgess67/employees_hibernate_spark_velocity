@@ -14,7 +14,7 @@
 
         #foreach($department in $departments)
         <tr>
-            <td>$department.getTitle()</td>
+            <td><a href="/departments/$department.getId()">$department.getTitle()</a></td>
             <td>  <a href="/departments/$department.getId()/edit">Edit Department</a></td>
             <td>
                 <form action="/departments/$department.getId()/delete" method="post">

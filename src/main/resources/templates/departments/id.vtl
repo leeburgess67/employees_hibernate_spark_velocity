@@ -4,14 +4,21 @@
     <table>
         <tr>
             <th>Department Name</th>
+            <br>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Salary</th>
+            <th>Budget</th>
         </tr>
 
         <tr>
-            <td>$engineer.getFirstName()</td>
-            <td>$engineer.getLastName()</td>
-            <td>$engineer.getDepartment().getTitle()</td>
-            <td>$engineer.getSalary()</td>
+            <td>$department.getTitle()</td>
+            <br>
+            <td>$manager.getFirstName()</td>
+            <td>$manager.getLastName()</td>
+            <td>$manager.getSalary()</td>
+            <td>$manager.getBudget()</td>
         </tr>
     </table>
-    <a href="/engineers/$engineer.getId()/edit">Edit Engineer</a>
+    <a href="/engineers/$engineer.getId()/edit">Edit Department</a>
 </div>

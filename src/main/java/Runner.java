@@ -1,4 +1,5 @@
 import db.DBHelper;
+import db.DBManager;
 import models.Department;
 import models.Employee;
 import models.Engineer;
@@ -25,6 +26,6 @@ public class Runner {
         DBHelper.save(engineer2);
 
         Engineer found = DBHelper.find(engineer1.getId(), Engineer.class);
-        Manager foundManager = DBHelper.findManagerForDept(department1);
+        Manager foundManager = DBManager.findManagerForDept(department1);
     }
 }

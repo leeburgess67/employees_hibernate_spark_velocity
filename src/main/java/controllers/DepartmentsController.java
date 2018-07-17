@@ -1,8 +1,10 @@
 package controllers;
 
 import db.DBHelper;
+import db.DBManager;
 import models.Department;
 import models.Engineer;
+import models.Manager;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -52,18 +54,20 @@ public class DepartmentsController {
         }, velocityTemplateEngine);
 
 
-// DONT REALLY NEED TO VIEW INDIVIDUALLY AS NO MORE INFO
-//        get("/departments/:id", (req, res) -> {
-//            HashMap<String, Object> model = new HashMap<>();
-//            model.put("template", "templates/departments/id.vtl");
-//
-//            int departmentId = Integer.parseInt(req.params(":id"));
-//            Department department= DBHelper.find(departmentId, Department.class);
-//
-//            model.put("department", department);
-//            return new ModelAndView(model, "templates/layout.vtl");
-//
-//        }, velocityTemplateEngine);
+        get("/departments/:id", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            model.put("template", "templates/departments/id.vtl");
+
+            int departmentId = Integer.parseInt(req.params(":id"));
+            Department department= DBHelper.find(departmentId, Department.class);
+            model.put("department", department);
+
+            Manager manager = DBManager.findManagerForDept(department);
+            model.put("manager", manager);
+
+            return new ModelAndView(model, "templates/layout.vtl");
+
+        }, velocityTemplateEngine);
 
 
         //UPDATE

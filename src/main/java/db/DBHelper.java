@@ -120,10 +120,4 @@ public class DBHelper {
 
     }
 
-    public static Manager findManagerForDept(Department department) {
-        session = HibernateUtil.getSessionFactory().openSession();
-        Criteria cr = session.createCriteria(Manager.class);
-        cr.add(Restrictions.eq("department", department));
-        return (Manager) cr.uniqueResult();
-    }
 }
