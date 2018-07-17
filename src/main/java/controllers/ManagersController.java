@@ -1,5 +1,7 @@
 package controllers;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
+import com.sun.tools.internal.xjc.model.Model;
 import db.DBHelper;
 import models.Department;
 import models.Manager;
@@ -74,6 +76,61 @@ public class ManagersController {
             return new ModelAndView(model, "templates/layout.vtl");
 
         }, velocityTemplateEngine);
+
+        get("/managers/:id/edit", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            List<Department> departments = DBHelper.getAll(Department.class);
+
+            int managerId = Integer.parseInt(req.params(":id"));
+            Manager manager = DBHelper.find(managerId, Manager.class);
+
+            model.put("manager", manager);
+            model.put("departments", departments);
+            model.put("template", "templates/managers/edit.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, velocityTemplateEngine);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 
