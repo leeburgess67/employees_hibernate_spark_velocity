@@ -18,6 +18,7 @@ public class EmployeesController {
         Seeds.seedData();
 
         ManagersController managersController = new ManagersController();
+        EngineersController engineersController = new EngineersController();
 
         VelocityTemplateEngine velocityTemplateEngine = new VelocityTemplateEngine();
 

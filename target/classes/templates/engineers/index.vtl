@@ -1,0 +1,31 @@
+<p class="pageHeader">All Engineers</p>
+
+
+<div>
+    <a href="/engineers/new" class="button center">New Engineer</a>
+</div>
+<br>
+<div class="container">
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Department</th>
+            <th>Salary</th>
+        </tr>
+
+        #foreach($engineer in $engineers)
+        <tr>
+            <td><a href="/engineers/$engineer.getId()">$engineer.getFirstName()</a></td>
+            <td>$engineer.getLastName()</td>
+            <td>$engineer.getDepartment().getTitle()</td>
+            <td>$engineer.getSalary()</td>
+            <td>
+                <form action="/engineer/$engineer.getId()/delete" method="post">
+                    <input type="submit" value="Delete Engineer">
+                </form>
+            </td>
+        </tr>
+        #end
+    </table>
+</div>

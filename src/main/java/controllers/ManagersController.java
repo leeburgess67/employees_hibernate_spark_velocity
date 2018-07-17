@@ -23,7 +23,6 @@ public class ManagersController {
     }
 
     private void setUpEndpoints() {
-        //TODO: add routes in here
         VelocityTemplateEngine velocityTemplateEngine = new VelocityTemplateEngine();
 
 
