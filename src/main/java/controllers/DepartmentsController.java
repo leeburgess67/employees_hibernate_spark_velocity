@@ -23,6 +23,22 @@ public class DepartmentsController {
 
         //CREATE
 
+        get("/departments/new", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            model.put("template", "templates/departments/create.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, velocityTemplateEngine);
+
+        post("/departments", (req, res) -> {
+            String deptName = req.queryParams("name");
+
+            Department newDepartment = new Department(deptName);
+            DBHelper.save(newDepartment);
+
+            res.redirect("/departments");
+            return null;
+        }, velocityTemplateEngine);
+
 
         //READ
         get("/departments", (req, res) -> {
@@ -77,6 +93,18 @@ public class DepartmentsController {
 
 
         //DELETE
+        post("/departments/:id/delete", (req, res) -> {
+            int departmentId = Integer.parseInt(req.params(":id"));
+            Department department = DBHelper.find(departmentId, Department.class);
+            DBHelper.delete(department);
+
+            res.redirect("/departments");
+
+            return null;
+        }, velocityTemplateEngine);
+
+        //WILL DELETE ONE BUT NOT THE LAST ONE???
+
 
 
 
