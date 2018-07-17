@@ -5,6 +5,7 @@ import com.sun.tools.internal.xjc.model.Model;
 import db.DBHelper;
 import models.Department;
 import models.Manager;
+import org.omg.CORBA.INTERNAL;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -88,6 +89,29 @@ public class ManagersController {
             model.put("departments", departments);
             model.put("template", "templates/managers/edit.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
+        }, velocityTemplateEngine);
+
+        post("/managers/:id", (req, res) -> {
+            int departmentId = Integer.parseInt(req.queryParams("department"));
+            Department department = DBHelper.find(departmentId, Department.class);
+            String firstName = (req.queryParams("first-name"));
+            String lastName = (req.queryParams("last-name"));
+            int salary = Integer.parseInt(req.queryParams("salary"));
+            double budget = Double.parseDouble(req.queryParams("budget"));
+
+            int managerId = Integer.parseInt(req.params(":id"));
+            Manager manager = DBHelper.find(managerId, Manager.class);
+            manager.setFirstName(firstName);
+            manager.setLastName(lastName);
+            manager.setBudget(budget);
+            manager.setSalary(salary);
+            manager.setDepartment(department);
+            DBHelper.update(manager);
+
+            res.redirect("/managers");
+            return null;
+
+
         }, velocityTemplateEngine);
 
 
