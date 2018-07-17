@@ -17,7 +17,7 @@
 
         #foreach($manager in $managers)
             <tr>
-                <td>$manager.getFirstName()</td>
+                <td><a href="/managers/$manager.getId()">$manager.getFirstName()</a></td>
                 <td>$manager.getLastName()</td>
                 <td>$manager.getDepartment().getTitle()</td>
                 <td>$manager.getSalary()</td>
