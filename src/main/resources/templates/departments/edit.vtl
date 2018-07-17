@@ -1,0 +1,9 @@
+<h1>Edit Department</h1>
+<br>
+<form action="/departments/$department.getId()" method="post">
+    <label for="name">Department Name:</label>
+    <input type="text" name="name" id="name" value="$department.getTitle()" required>
+
+    <input type="submit" value="Edit Department">
+
+</form>
